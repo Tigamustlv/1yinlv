@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Ano de Namoro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            color: #333;
+            text-align: center;
+          }
+        header {
+            background-color: #ff4d4d;
+            padding: 20px;
+        }
+        header h1 {
+            color: white;
+            font-family: 'Dancing Script', cursive;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #ff4d4d;
+            padding: 10px;
+            color: white;
+        }
+
+        /* Estilos dos corações */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e60000; /* Cor vermelha mais forte */
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 80%, 18% 100%, 0% 38%);
+            opacity: 1; /* Opacidade total */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para dar destaque */
+            animation: floatUp 4s infinite ease-in;
+        }
+
+        /* Animação para os corações subirem */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Feliz 1 Ano de Namoro!</h1>
+</header>
+
+<section>
+    <h2>Nossa História</h2>
+    <p>Foi há um ano que começamos essa jornada maravilhosa juntos. Desde então, cada momento com você tem sido especial.</p>
+    <img src="foto_de_nos_dois.jpg" alt="Nós dois" width="300">
+</section>
+
+<section>
+    <h2>Linha do Tempo</h2>
+    <ul>
+        <li>Primeiro encontro: 10 de outubro de 2023</li>
+        <li>Primeira viagem: 15 de janeiro de 2024</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Nossa Playlist Especial</h2>
+    <!-- Incorpore uma playlist aqui (Spotify ou YouTube) -->
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2ZmGQmD0yV3epcur3RcEP0?utm_source=generator" width="300" height="380" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <p>Essas são as músicas que marcaram nosso primeiro ano juntos!</p>
+</section>
+
+<footer>
+    <p>Com amor, [Seu Nome]</p>
+</footer>
+
+<!-- Container para os corações -->
+<div id="heartContainer"></div>
+
+<!-- Script para gerar e animar os corações -->
+<script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw'; // Posiciona aleatoriamente na horizontal
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Duração aleatória da animação
+        heart.style.transform = `scale(${Math.random() + 0.5})`; // Tamanhos diferentes
+
+        document.body.appendChild(heart);
+
+        // Remover coração após a animação
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    // Criar corações a cada 300ms
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
