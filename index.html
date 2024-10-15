@@ -10,7 +10,7 @@
             background-color: #ffe6e6;
             color: #333;
             text-align: center;
-          }
+        }
         header {
             background-color: #ff4d4d;
             padding: 20px;
@@ -55,37 +55,101 @@
                 opacity: 0;
             }
         }
+
+        /* Estilo do carrossel */
+        .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 250px; /* Ajuste para deixar o carrossel menor */
+        margin: auto;
+        overflow: hidden; /* Oculta as imagens que estão fora da tela */
+        border-radius: 10px; /* Cantos arredondados */
+        }
+
+    .carousel-images {
+        display: flex; /* Para alinhar as imagens em linha */
+        transition: transform 0.5s ease; /* Transição suave */
+    }
+    .carousel-images img {
+        width: 100%; /* Todas as imagens ocuparão 100% da largura do carrossel */
+        height: auto; /* Altura automática para manter a proporção */
+        object-fit: cover; /* Para cobrir o espaço mantendo a proporção */
+    }
+
+    .line {
+        margin-top: 10px; /* Espaço acima da linha */
+        border: 50%;
+        height: 2px; /* Espessura da linha */
+        background-color: #ff4d4d; /* Cor da linha */
+        width: 65%; /* Largura da linha */
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+        /* Botões do carrossel */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.062);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .prev {
+            left: 5px;
+        }
+        .next {
+            right: 5px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Feliz 1 Ano de Namoro!</h1>
+    <h1>Feliz 1 Ano de Namoro! Viva nós!</h1>
 </header>
 
 <section>
-    <h2>Nossa História</h2>
-    <p>Foi há um ano que começamos essa jornada maravilhosa juntos. Desde então, cada momento com você tem sido especial.</p>
-    <img src="foto_de_nos_dois.jpg" alt="Nós dois" width="300">
-</section>
-
-<section>
-    <h2>Linha do Tempo</h2>
-    <ul>
-        <li>Primeiro encontro: 10 de outubro de 2023</li>
-        <li>Primeira viagem: 15 de janeiro de 2024</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Nossa Playlist Especial</h2>
-    <!-- Incorpore uma playlist aqui (Spotify ou YouTube) -->
+    <h2>Olha...</h2>
+    <p>Eu não consegui pensar em um jeito claro de te presentear, então aqui está 🤠<br>Há um ano decidimos fazer mais parte da vida um do outro <br>e desde então, não consigo pensar em momentos que considero especiais e você não esteja lá.</p>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2ZmGQmD0yV3epcur3RcEP0?utm_source=generator" width="300" height="380" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <p>Essas são as músicas que marcaram nosso primeiro ano juntos!</p>
+    <p>Espero que ouvindo essas você se sinta da mesma forma que eu.</p>
+</section>
+
+<section>
+    <h2>Titi e Teté</h2>
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="img/nós3.jpg" alt="Nós dois">
+            <img src="img/nós4.jpg" alt="Nós dois">
+            <img src="img/nós6.jpg" alt="Nós dois">
+            <img src="img/nós7.jpg" alt="Nós dois">
+        </div>
+        <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    <div class="line"></div>
+    <div class="texto">
+        <h3>📅 19/10/2024 <br>Você é MUITO especial para mim!</h3>
+        <p>365 dias, 8.760 horas e 525.600 minutos.<br>Isso é 1 ano ao seu lado.</p>
+        <p>Eu amo estar com você. Amo dividir a vida<br>com você e espero fazer isso por mais <br>um milhão de anos!</p>
+        <p>“E eu escolheria você; em cem vidas, em cem mundos, em qualquer versão da realidade, eu encontraria você e escolheria você.”</p>
+        <p>Eu sou completamente apaixonado por você e por tudo que diz respeito a você. Eu respiro você, eu vivo você e agradeço todos os dias a Deus por você estar aqui, me trazendo sempre a oportunidade de ser cada vez melhor por mim e por você. Você faz eu me sentir bem. Faz eu me sentir vivo. Eu agradeço imensamente por conseguir ser o homem que você queria que eu fosse, e eu espero que você sempre acredite: Você tem todo o meu coração.</p>
+        <p>Existem tantas coisas que eu poderia dizer, mas tenho certeza de que sairia tudo errado. Não sei se até o fim de nossas vidas eu vá conseguir expressar com precisão o que eu sinto por você, mas sei que passarei uma vida inteira tentando te mostrar como me sinto.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Vai ter mais coisa aqui</h2>
+    <!-- Incorpore uma playlist aqui (Spotify ou YouTube) -->
 </section>
 
 <footer>
-    <p>Com amor, [Seu Nome]</p>
+    <p>Com amor, Gatinho</p>
 </footer>
 
 <!-- Container para os corações -->
@@ -110,6 +174,24 @@
 
     // Criar corações a cada 300ms
     setInterval(createHeart, 300);
+
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-images img');
+
+    function moveSlide(direction) {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        const offset = -currentIndex * 100; // Mova para a imagem correta
+        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+    }
+
+    // Função para auto-avançar o carrossel
+    function autoAdvance() {
+        moveSlide(1);
+    }
+
+    // Avança automaticamente a cada 3 segundos
+    setInterval(autoAdvance, 3000);
+    
 </script>
 
 </body>
